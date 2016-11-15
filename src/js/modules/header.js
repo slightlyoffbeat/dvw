@@ -1,4 +1,4 @@
-jQuery(document).ready(($) => {
+jQuery(document).ready($ => {
   // classes
   const mainHeader = $('.header');
   const theNav = $('.primary-nav');
@@ -47,14 +47,13 @@ jQuery(document).ready(($) => {
       }
     }
   });
-});
 
-
-// Change background color of header on scroll
-$(window).on('scroll', () => {
-  if ($(window).scrollTop() > 80) {
-    $('.header').addClass('is-scroll');
-  } else {
-    $('.header').removeClass('is-scroll');
-  }
+  // Change background color of header on scroll
+  $(window).on('scroll', () => {
+    if ($(window).scrollTop() > 80) {
+      $('.header').addClass('is-scroll');
+    } else {
+      $('.header').removeClass('is-scroll');
+    }
+  });
 });

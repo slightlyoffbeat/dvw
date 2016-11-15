@@ -104,37 +104,38 @@ add_action( 'widgets_init', 'dvw_widgets_init' );
 function dvw_scripts() {
 	wp_enqueue_style( 'dvw-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'dvw-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_style ('dvw-css', get_template_directory_uri() . '/css/main.min.css');
 
-	wp_enqueue_script( 'dvw-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'dvw-js', get_stylesheet_directory_uri() . '/js/bundle.js', array( 'jquery' ) );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'dvw_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
 
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
+// Set up Options panel
+if( function_exists('acf_add_options_page') ) {
 
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
+	acf_add_options_page(array(
+		'page_title' 	=> 'Site Options',
+		'menu_title'	=> 'Options',
+		'menu_slug' 	=> 'dvw-options',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
 
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Featured Projects',
+		'menu_title'	=> 'Featured Projects',
+		'menu_slug' 	=> 'dvw-options',
+		'capability'	=> 'edit_posts',
+		'parent_slug' => 'edit.php?post_type=portfolio',
+		'redirect'		=> false
+	));
 
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
+}
+
+?>

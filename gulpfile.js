@@ -21,6 +21,7 @@ const watchify     = require('watchify');
 const uglify       = require('gulp-uglify');
 const buffer       = require('vinyl-buffer');
 const flatten      = require('gulp-flatten');
+const runSequence    = require('run-sequence');
 
 
 // ----------------------------------------------------------------------------------------
@@ -29,7 +30,7 @@ const flatten      = require('gulp-flatten');
 
 
 const src = {
-  sass     : 'src/scss/**/*.scss',
+  sass     : 'src/scss/style.scss',
   top      : 'src/*',
   html     : 'src/*.html',
   img      : 'src/img/**/*',
@@ -37,7 +38,7 @@ const src = {
   fonts    : 'src/scss/vendor/font-awesome/**/*',
   mainjs   : 'src/js/main.js',
   vendorjs : 'src/js/vegndor/*.js',
-  php      : ['./*.php', 'inc/**/*', 'js/**/*', 'layouts/**/*', 'template-parts/**/*', 'style.css'],
+  php      : ['./*.php', 'css/**/*', 'inc/**/*', 'js/**/*', 'style.css'],
 
 };
 
@@ -54,6 +55,17 @@ const dist = {
 };
 
 
+const prod = {
+  css      : 'css',
+  top      : '../../../../prod',
+  js       : 'js',
+  mainjs   : 'js',
+  img      : 'img',
+  vendorjs : 'js/vendor',
+  fonts    : 'fonts',
+};
+
+
 // ----------------------------------------------------------------------------------------
 // Tasks
 // ----------------------------------------------------------------------------------------
@@ -67,10 +79,21 @@ gulp.task('sass', () => {
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleancss())
-    .pipe(rename({ suffix: '.min' }))
+    .pipe(rename({ basename: 'main', suffix: '.min' }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(dist.css))
     .pipe(browserSync.reload({ stream: true }));
+});
+
+// Task: Sass Prod
+// Production ready sass
+gulp.task('sass-prod', () => {
+  gulp.src(src.sass)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(cleancss())
+    .pipe(rename({ basename: 'main', suffix: '.min' }))
+    .pipe(gulp.dest(prod.css));
 });
 
 // Task: HTML
@@ -94,6 +117,7 @@ function bundleJs(bundler) {
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist.mainjs))
+    .pipe(gulp.dest(prod.mainjs))
     .pipe(browserSync.reload({ stream:true }));
 }
 
@@ -136,7 +160,8 @@ gulp.task('browserify-prod', () => {
     .pipe(buffer())
     .pipe(rename('bundle.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(dist.mainjs));
+    .pipe(gulp.dest(dist.mainjs))
+    .pipe(gulp.dest(prod.mainjs));
 });
 
 // Task: Migrate Files
@@ -149,13 +174,15 @@ gulp.task('migrate', () => {
   gulp.src(`${src.fonts}.{eot,svg,tff,woff,woff2}`)
     .pipe(plumber())
     .pipe(flatten())
-    .pipe(gulp.dest(dist.fonts));
+    .pipe(gulp.dest(dist.fonts))
+    .pipe(gulp.dest(prod.fonts));
 
 
   // Grab images
   gulp.src(src.img)
     .pipe(plumber())
-    .pipe(gulp.dest(dist.img));
+    .pipe(gulp.dest(dist.img))
+    .pipe(gulp.dest(prod.img));
 
   // Grab Vendor JS (not used in es6 modules)
   gulp.src(src.vendorjs)
@@ -193,12 +220,20 @@ gulp.task('browserSync', () => {
   });
 });
 
+// Task: Build
+gulp.task('build', (callback) => {
+  runSequence('clean',
+              ['migrate', 'sass-prod', 'browserify-prod'],
+              callback);
+});
+
 // Task: prod
 // Creates a production-ready folder with theme
-gulp.task('prod', ['prod-clean'], () => {
+gulp.task('prod', ['prod-clean', 'sass-prod'], () => {
   gulp.src(src.php, { base: '.' })
     .pipe(plumber())
     .pipe(gulp.dest(dist.prod))
+    .pipe(gulp.dest(prod.top))
     .on('error', gutil.log);
 });
 
