@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Walker Texas Ranger
@@ -121,7 +120,7 @@ function bem_menu($location = "main_menu", $css_class_prefix = 'main-menu', $css
     $args = array(
         'theme_location'    => $location,
         'container'         => false,
-        'items_wrap'        => '<ul class="' . $css_class_prefix . "_list" . ' ' . $modifiers . '">%3$s</ul>',
+        'items_wrap'        => '<ul class="' . $css_class_prefix . '__list' . ' ' . $modifiers . '">%3$s</ul>',
         'walker'            => new walker_texas_ranger($css_class_prefix, true)
     );
 

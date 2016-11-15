@@ -21,7 +21,7 @@ const watchify     = require('watchify');
 const uglify       = require('gulp-uglify');
 const buffer       = require('vinyl-buffer');
 const flatten      = require('gulp-flatten');
-const runSequence    = require('run-sequence');
+const runSequence  = require('run-sequence');
 
 
 // ----------------------------------------------------------------------------------------
@@ -30,7 +30,8 @@ const runSequence    = require('run-sequence');
 
 
 const src = {
-  sass     : 'src/scss/style.scss',
+  sass     : 'src/scss/**/*.scss',
+  sassroot : 'src/scss/style.scss',
   top      : 'src/*',
   html     : 'src/*.html',
   img      : 'src/img/**/*',
@@ -74,14 +75,14 @@ const prod = {
 // Task: Sass
 // sourcemaps, compile, minify, rename, move to dist
 gulp.task('sass', () => {
-  gulp.src(src.sass)
+  gulp.src(src.sassroot)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleancss())
     .pipe(rename({ basename: 'main', suffix: '.min' }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(dist.css))
+    .pipe(gulp.dest(prod.css))
     .pipe(browserSync.reload({ stream: true }));
 });
 
@@ -208,9 +209,7 @@ gulp.task('clean', () => {
 // Task: BrowserSync
 gulp.task('browserSync', () => {
   browserSync({
-    server: {
-      baseDir: './dist',
-    },
+    proxy: 'http://dvw.dev:8888/',
     notify: {
       styles: {
         top: 'auto',

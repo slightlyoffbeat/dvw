@@ -8,12 +8,23 @@
         <p class="intro__text">I am a creator, <a href="#" target="blank">developer</a>, product guy, strategist, <a href="#" target="_blank">homebrewer</a>, runner,
           sock enthusiast, beard evangelist, <a href="#">writer</a>, drummer, adventurer, Oxford comma advocate,
           and <a href="#">human Swiss Army Knife</a>.</p>
-          <a href="#"><i class="intro__icon fa fa-twitter" aria-hidden="true"></i></a>
-          <a href="#"><i class="intro__icon fa fa-github" aria-hidden="true"></i></a>
-          <a href="#"><i class="intro__icon fa fa-linkedin" aria-hidden="true"></i></a>
-          <a href="#"><i class="intro__icon fa fa-instagram" aria-hidden="true"></i></a>
-          <a href="#"><i class="intro__icon fa fa-rss" aria-hidden="true"></i></a>
-          <a href="#"><i class="intro__icon fa fa-envelope-o" aria-hidden="true"></i></a>
+
+        <?php
+
+        if( have_rows('social_links', 'options') ):
+
+          while ( have_rows('social_Links', 'options') ) : the_row();
+        ?>
+
+        <a target="_blank" href="<?php the_sub_field('social_link')?>"><i class="intro__icon fa fa-<?php the_sub_field('social_icon')?>" aria-hidden="true"></i></a>
+        <?php
+        endwhile;
+
+        else :
+
+        endif;
+
+        ?>
       </div>
 
       <span class="scroll-down"><span>Scroll Down</span></span>
