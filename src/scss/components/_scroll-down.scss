@@ -1,0 +1,57 @@
+// ----------------------------------------------------------------------------
+// Scroll Down
+// ----------------------------------------------------------------------------
+
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 50px;
+  border: 2px solid $off-white;
+  border-radius: 50px;
+  display: none;
+  opacity: 1;
+
+  @include bp(small h 540px) {
+    display: block;
+  }
+}
+
+.scroll-down::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 2px;
+  height: 10px;
+  background-color: $primary;
+  animation: scrollDown 2s infinite;
+}
+
+.scroll-down span {
+  width: 300px;
+  display: block;
+  margin-top: 58px;
+  margin-left: -20px;
+  font-size: 13px;
+  font-family: 'lato';
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 22px);
+  }
+}

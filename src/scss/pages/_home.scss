@@ -1,0 +1,347 @@
+// ----------------------------------------------------------------------------
+// Home / Index
+// ----------------------------------------------------------------------------
+
+// scss-lint:disable ColorVariable
+
+// HERO SECTION
+.intro {
+
+  @include bp(small h 540px) {
+    display: flex;
+    align-items: center;
+    height: calc(100vh);
+  }
+
+  @include bp(small) {
+    text-align: left;
+  }
+
+  @include bp(medium) {
+    @include span(8);
+    @include push(2);
+  }
+}
+
+.intro p a {
+  @include text-underline($off-white, $off-black, $primary);
+}
+
+.intro__wrap {
+  margin-top: 160px;
+
+  @include bp(small) {
+    margin-top: 80px;
+    margin-bottom: 60px;
+  }
+
+  @include bp(small h 540px) {
+    margin-top: -80px;
+    margin-bottom: 0;
+  }
+}
+
+.intro__title::before {
+  display: block;
+  content: '';
+  background: $primary;
+  height: 3px;
+  margin-bottom: 6px;
+  // margin-left: auto;
+  // margin-right: auto;
+  width: 120px;
+
+  @include bp(small) {
+    width: 270px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.intro__icon {
+  @include typesize(1);
+  padding-right: 15px;
+  color: $off-white;
+  margin-top: 5px;
+  transition: color $base-time $base-ease;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+
+// SECTIONS
+.section-title {
+  text-align: center;
+  margin-bottom: spacing(1);
+
+  &::after {
+    display: block;
+    content: '';
+    background: $primary;
+    height: 2px;
+    width: 70px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.home-slate {
+  padding: spacing(2) 0;
+}
+
+
+
+// PORTFOLIO SECTION
+$home-unit: (
+  xsmall:     450px,
+  small:      242px,
+  medium:     306px,
+  large:      388px
+);
+
+@include with-layout(12 (5px 10px) inside-static) {
+
+  .work {
+    margin-top: 60px;
+
+    @include bp(small) {
+      margin-top: 0;
+    }
+  }
+
+  .work__link {
+    text-decoration: none;
+    color: $white;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .work__item {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .work__item--1x1 {
+    @include span(12);
+    @include bp(small) {
+      @include span(4);
+    }
+  }
+
+  .work__item--1x2,
+  .work__item--2x2 {
+    @include span(12);
+    @include bp(small) {
+      @include span(8);
+    }
+  }
+
+  .work__item--1x3 {
+    @include span(12);
+  }
+
+  .work__photo {
+    background-size: cover;
+    height: map-get($home-unit, small);
+    transition: all .3s ease;
+
+    @include bp(medium) {
+      height: map-get($home-unit, medium);
+    }
+
+    @include bp(large) {
+      height: map-get($home-unit, large);
+    }
+  }
+
+  .work__photo--double {
+
+    @include bp(small) {
+      height: (map-get($home-unit, small) * 2) + 10px;
+    }
+
+    @include bp(medium) {
+      height: (map-get($home-unit, medium) * 2) + 10px;
+    }
+
+    @include bp(large) {
+      height: (map-get($home-unit, large) * 2) + 10px;
+    }
+  }
+
+  .work__hover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 0 5px;
+  }
+
+  .work__hover-outer {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    opacity: 0;
+    transition: all .4s ease;
+  }
+
+  .work__hover-inner {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #808080;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all .4s ease-in-out;
+  }
+
+  .work__hover-content {
+    width: 100%;
+  }
+
+  .work__info {
+    @include typesize(-1);
+    font-family: $sans-serif;
+  }
+
+  // ON HOVER
+
+  .work__link:hover {
+
+    .work__photo {
+      // background-position-x: 15px;
+    }
+
+    .work__hover-outer {
+      opacity: 1;
+    }
+
+    .work__hover-inner {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+  }
+}
+
+
+
+// INSTAGRAM SECTION
+$insta-unit: (
+xsmall:     148px,
+small:      176px,
+medium:     225px,
+large:      287px
+);
+
+@include with-layout(12 (5px 10px) inside-static) {
+  .insta__wrap {
+    @include span(6);
+    position: relative;
+
+    @include bp(small) {
+      @include span(3);
+    }
+  }
+
+  .insta__photo,
+  .insta__hover {
+
+    height: 150px;
+
+    @include bp(small) {
+      height: map-get($insta-unit, small);
+    }
+
+    @include bp(medium) {
+      height: map-get($insta-unit, medium);
+    }
+
+    @include bp(large) {
+      height: map-get($insta-unit, large);
+    }
+  }
+
+  .insta__photo {
+    background-size: cover;
+    margin-bottom: 10px;
+  }
+
+  .insta__hover {
+    position: absolute;
+    background-color: rgba(51, 51, 51, 0.6);
+    width: calc(100% - 10px);
+    top: 0;
+    left: 5px;
+    opacity: 0;
+    transition: opacity .5s $base-ease;
+    text-align: center;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .insta__icon {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: $primary;
+  }
+}
+
+// SNIPPETS
+.snippet {
+  background-color: $dark-gray;
+}
+
+.snippet__post {
+  padding: spacing(1) 0;
+
+  @include bp(small) {
+    @include span(8);
+    @include push(2);
+  }
+}
+
+.snippet__title {
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.snippet__meta {
+  font-family: $sans-serif;
+  color: $light-gray;
+  display: block;
+}
+
+$_snippet-button-color: $primary;
+$_snippet-button-color-hover: $primary;
+$_snippet-button-bg:  #373737;
+$_snippet-button-bg-hover: darken(#373737, 2%);
+$_snippet-button-border: #373737;
+$_snippet-button-border-hover: darken(#373737, 2%);
+
+.snippet__button {
+  @include button-variant(
+    $_snippet-button-color,
+    $_snippet-button-color-hover,
+    $_snippet-button-bg,
+    $_snippet-button-bg-hover,
+    $_snippet-button-border,
+    $_snippet-button-border-hover
+  );
+
+  margin-top: spacing(1);
+  font-family: sans-serif;
+  padding: spacing(.2) spacing(1);
+}

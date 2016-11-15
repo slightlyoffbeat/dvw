@@ -1,0 +1,126 @@
+// ----------------------------------------------------------------------------
+// Header
+// ----------------------------------------------------------------------------
+
+$_header-scroll: #252525;
+$_nav-border: #4a4a4a;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height;
+  transition: transform .5s, background-color .5s ease;
+  padding: 0;
+  z-index: 999;
+  background-color: $_header-scroll;
+
+  @include bp(small) {
+    padding: 0 20px;
+    background-color: transparent;
+
+    &.is-hidden {
+      transform: translateY(-100%);
+    }
+
+  }
+
+  &.is-scroll {
+    background-color: $_header-scroll;
+  }
+
+
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  bottom: auto;
+  transform: translateY(-50%);
+
+  @include bp(small) {
+    left: auto;
+  }
+}
+
+.primary-nav {
+  position: absolute;
+  top: $header-height;
+  width: 100%;
+  background-color: $_header-scroll;
+  transition: all .5s ease;
+  max-height: 0;
+  border-bottom: 1px solid $_header-scroll;
+  overflow: hidden;
+
+  @include bp(small) {
+    float: right;
+    position: initial;
+    background-color: transparent;
+    width: auto;
+    overflow: auto;
+    max-height: none;
+    border: 0 solid transparent;
+
+  }
+
+  &.is-active {
+    border-bottom: 1px solid $_nav-border;
+    max-height: 180px;
+  }
+
+}
+
+.primary-nav__list {
+  margin: 0;
+  padding: 10px 0;
+
+  @include bp(small) {
+    padding: 0;
+  }
+}
+
+.primary-nav__item {
+  list-style: none;
+  margin: 0;
+  display: block;
+  border-bottom: 1px solid $_nav-border;
+
+  @include bp(small) {
+    float: left;
+    display: inline-block;
+    margin-left: 20px;
+    border-bottom: 0 solid transparent;
+
+    &:first-child {
+      border-top: 0 solid transparent;
+    }
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:first-child {
+    border-top: 1px solid $_nav-border;
+  }
+
+}
+
+.primary-nav__link {
+  @include typesize(-1);
+  font-family: $sans-serif;
+  text-transform: uppercase;
+  color: $off-white;
+  font-weight: 700;
+  letter-spacing: .5px;
+  margin-left: 15px;
+  line-height: 40px;
+
+  @include bp(small) {
+    margin-left: 0;
+    line-height: $header-height;
+  }
+}

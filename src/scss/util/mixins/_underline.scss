@@ -1,0 +1,54 @@
+// ----------------------------------------------------------------------------
+// Underline Mixin
+// ----------------------------------------------------------------------------
+
+
+/*
+*
+*  Example:
+*
+*  .post a {
+*    @include text-underline($color-background, $color-text, $color-selection);
+*  }
+*
+*/
+
+
+$underline-position: -5px;
+$underline-weight: 3px;
+
+@mixin text-underline($color, $bg-color, $under-color) {
+  text-decoration: none;
+  color: $color;
+  display: inline;
+  position: relative;
+  width: 85%;
+  box-shadow: 0 $underline-position 0 -4px $bg-color inset,
+    0 ($underline-position + $underline-weight) 0 $under-color inset;
+  text-shadow: 0 0 0 $bg-color,
+   1px 0 0 $bg-color,
+   2px 0 0 $bg-color,
+   -1px 0 0 $bg-color,
+   -2px 0 0 $bg-color,
+   1px -1px 0 $bg-color,
+   2px -1px 0 $bg-color,
+   -1px -1px 0 $bg-color,
+   -2px -1px 0 $bg-color,
+   1px 1px 0 $bg-color,
+   2px 1px 0 $bg-color,
+   -1px 1px 0 $bg-color,
+   -2px 1px 0 $bg-color,
+   1px -2px 0 $bg-color,
+   2px -2px 0 $bg-color,
+   -1px -2px 0 $bg-color,
+   -2px -2px 0 $bg-color;
+  transition: color $base-time $base-ease;
+
+  &::selection {
+    text-shadow: none;
+   }
+
+  &:hover {
+    color: darken($color, 20%);
+   }
+ }

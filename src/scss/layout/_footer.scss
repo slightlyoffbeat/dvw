@@ -1,0 +1,28 @@
+// ----------------------------------------------------------------------------
+// Footer
+// ----------------------------------------------------------------------------
+
+.footer {
+  background-color: $dark-gray;
+  padding: 50px;
+  margin-top: spacing(2);
+  text-align: center;
+  font-family: $sans-serif;
+  font-weight: 300;
+}
+
+.footer__text {
+  display: block;
+  color: $light-gray;
+  margin-bottom: 10px;
+}
+
+.footer__icon {
+  color: $off-white;
+  font-size: 24px;
+  margin-right: 15px;
+}
+
+.footer__icon:last-child {
+  margin-right: 0;
+}
