@@ -17,12 +17,7 @@
 	</button>
 
 	<nav class="primary-nav">
-		<ul class="primary-nav__list">
-			<li class="primary-nav__item"><a class="primary-nav__link" href="#0">About</a></li>
-			<li class="primary-nav__item"><a class="primary-nav__link" href="#0">Blog</a></li>
-			<li class="primary-nav__item"><a class="primary-nav__link" href="#0">Resume</a></li>
-			<li class="primary-nav__item"><a class="primary-nav__link" href="#0">Contact</a></li>
-		</ul>
-	</nav> <!-- .cd-primary-nav -->
+		<?php bem_menu('primary', 'primary-nav'); ?>
+	</nav> <!--/.primary-nav-->
 
 </header>

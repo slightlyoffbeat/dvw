@@ -33,12 +33,11 @@
 
 ?>
 
-
 <div class="work home-slate">
   <div class="container">
     <h2 class="section-title">My Work</h2>
 
-    <a class="work__link" href="#">
+    <a class="work__link" href="<?php echo get_permalink( $featured_1x1_1 ) ?>">
       <div class="work__item work__item--1x1">
         <div style="background-image: url('<?php the_field('1x1-image', $featured_1x1_1); ?>')"
          class="work__photo"></div>
@@ -46,8 +45,8 @@
           <div class="work__hover-outer">
             <div class="work__hover-inner">
               <div class="work__hover-content">
-                <h4>BitTorrent Sync Promotional Video</h4>
-                <span class="work__info">Editorial Director / Writer / Editor / Motion Graphics</span>
+                <h4><?php echo get_the_title( $featured_1x1_1 ) ?></h4>
+                <span class="work__info"><?php the_field('role', $featured_1x1_1); ?></span>
               </div>
             </div>
           </div>
@@ -55,15 +54,15 @@
       </div>
     </a>
 
-    <a class="work__link" href="#">
+    <a class="work__link" href="<?php echo get_permalink( $featured_1x2_1 ) ?>">
       <div class="work__item work__item--1x2">
         <div style="background-image: url('<?php the_field('1x2-image', $featured_1x2_1); ?>')" class="work__photo"></div>
         <div class="work__hover">
           <div class="work__hover-outer">
             <div class="work__hover-inner">
               <div class="work__hover-content">
-                <h4>BitTorrent Sync Promotional Video</h4>
-                <span class="work__info">Editorial Director / Writer / Editor / Motion Graphics</span>
+                <h4><?php echo get_the_title( $featured_1x2_1 ) ?></h4>
+                <span class="work__info"><?php the_field('role', $featured_1x2_1); ?></span>
               </div>
             </div>
           </div>
@@ -71,7 +70,7 @@
       </div>
     </a>
 
-    <a class="work__link" href="#">
+    <a class="work__link" href="<?php echo get_permalink( $featured_2x2 ) ?>">
       <div class="work__item work__item--2x2">
         <div style="background-image: url('<?php the_field('2x2-image', $featured_2x2); ?>')"
          class="work__photo work__photo--double"></div>
@@ -79,8 +78,8 @@
           <div class="work__hover-outer">
             <div class="work__hover-inner">
               <div class="work__hover-content">
-                <h4>BitTorrent Sync Promotional Video</h4>
-                <span class="work__info">Editorial Director / Writer / Editor / Motion Graphics</span>
+                <h4><?php echo get_the_title( $featured_2x2 ) ?></h4>
+                <span class="work__info"><?php the_field('role', $featured_2x2); ?></span>
               </div>
             </div>
           </div>
@@ -88,7 +87,7 @@
       </div>
     </a>
 
-    <a class="work__link" href="#">
+    <a class="work__link" href="<?php echo get_permalink( $featured_1x1_2 ) ?>">
       <div class="work__item work__item--1x1">
         <div style="background-image: url('<?php the_field('1x1-image', $featured_1x1_2); ?>')"
          class="work__photo"></div>
@@ -96,8 +95,8 @@
           <div class="work__hover-outer">
             <div class="work__hover-inner">
               <div class="work__hover-content">
-                <h4>BitTorrent Sync Promotional Video</h4>
-                <span class="work__info">Editorial Director / Writer / Editor / Motion Graphics</span>
+                <h4><?php echo get_the_title( $featured_1x1_2 ) ?></h4>
+                <span class="work__info"><?php the_field('role', $featured_1x1_2); ?></span>
               </div>
             </div>
           </div>
@@ -105,7 +104,7 @@
       </div>
     </a>
 
-    <a class="work__link" href="#">
+    <a class="work__link" href="<?php echo get_permalink( $featured_1x1_3 ) ?>">
       <div class="work__item work__item--1x1">
         <div style="background-image: url('<?php the_field('1x1-image', $featured_1x1_3); ?>')"
          class="work__photo"></div>
@@ -113,8 +112,8 @@
           <div class="work__hover-outer">
             <div class="work__hover-inner">
               <div class="work__hover-content">
-                <h4>BitTorrent Sync Promotional Video</h4>
-                <span class="work__info">Editorial Director / Writer / Editor / Motion Graphics</span>
+                <h4><?php echo get_the_title( $featured_1x1_3 ) ?></h4>
+                <span class="work__info"><?php the_field('role', $featured_1x1_3); ?></span>
               </div>
             </div>
           </div>
@@ -122,7 +121,7 @@
       </div>
     </a>
 
-    <a class="work__link" href="#">
+    <a class="work__link" href="<?php echo get_permalink( $featured_1x3 ) ?>">
       <div class="work__item work__item--1x3">
         <div style="background-image: url('<?php the_field('1x3-image', $featured_1x3); ?>')"
          class="work__photo"></div>
@@ -130,8 +129,8 @@
           <div class="work__hover-outer">
             <div class="work__hover-inner">
               <div class="work__hover-content">
-                <h4>BitTorrent Sync Promotional Video</h4>
-                <span class="work__info">Editorial Director / Writer / Editor / Motion Graphics</span>
+                <h4><?php echo get_the_title( $featured_1x3 ) ?></h4>
+                <span class="work__info"><?php the_field('role', $featured_1x3); ?></span>
               </div>
             </div>
           </div>
