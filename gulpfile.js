@@ -39,24 +39,13 @@ const src = {
   fonts    : 'src/scss/vendor/font-awesome/**/*',
   mainjs   : 'src/js/main.js',
   vendorjs : 'src/js/vegndor/*.js',
-  php      : ['./*.php', 'css/**/*', 'inc/**/*', 'js/**/*', 'style.css'],
-
+  php      : './**/*.php',
+  files      : ['./*.{txt,ico,png,php}', 'css/**/*', 'components/**/*',
+              'includes/**/*', 'js/**/*', 'style.css'],
 };
-
-const dist = {
-  css      : 'dist/css',
-  top      : 'dist',
-  img      : 'dist/img',
-  fonts    : 'dist/fonts',
-  js       : 'dist/js',
-  html     : 'dist',
-  mainjs   : 'dist/js',
-  vendorjs : 'dist/js/vendor',
-  prod     : 'prod',
-};
-
 
 const prod = {
+  prod     : 'prod',
   css      : 'css',
   top      : '../../../../prod',
   js       : 'js',
@@ -97,27 +86,16 @@ gulp.task('sass-prod', () => {
     .pipe(gulp.dest(prod.css));
 });
 
-// Task: HTML
-// move html files from src to dist
-gulp.task('html', () => {
-  gulp.src(src.html)
-    .pipe(plumber())
-    .pipe(gulp.dest(dist.html))
-    .pipe(browserSync.reload({ stream: true }))
-    .on('error', gutil.log);
-});
-
 
 function bundleJs(bundler) {
   return bundler.bundle()
     .pipe(source(src.mainjs))
     .pipe(buffer())
-    .pipe(gulp.dest(dist.mainjs))
+    .pipe(gulp.dest(prod.mainjs))
     .pipe(rename('bundle.js'))
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(dist.mainjs))
     .pipe(gulp.dest(prod.mainjs))
     .pipe(browserSync.reload({ stream:true }));
 }
@@ -145,6 +123,7 @@ gulp.task('watchify', () => {
 
 
 // Task: Browserify without watchify
+// Will compile JS, but still provide sourcemaps
 gulp.task('browserify', () => {
   const bundler = browserify(src.mainjs, { debug: true })
     .transform(babelify, { presets: ['es2015'] });
@@ -153,6 +132,7 @@ gulp.task('browserify', () => {
 });
 
 // Browserify without sourcemaps (or watchify)
+// No sourcemaps. Used for prod, etc
 gulp.task('browserify-prod', () => {
   const bundler = browserify(src.mainjs).transform(babelify, { presets: ['es2015'] });
 
@@ -161,50 +141,21 @@ gulp.task('browserify-prod', () => {
     .pipe(buffer())
     .pipe(rename('bundle.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(dist.mainjs))
     .pipe(gulp.dest(prod.mainjs));
 });
 
-// Task: Migrate Files
-gulp.task('migrate', () => {
-  gulp.src(`${src.top} .{txt,ico,html,png}`)
-    .pipe(plumber())
-    .pipe(gulp.dest(dist.top));
-
-  // Grab fonts
-  gulp.src(`${src.fonts}.{eot,svg,tff,woff,woff2}`)
-    .pipe(plumber())
-    .pipe(flatten())
-    .pipe(gulp.dest(dist.fonts))
-    .pipe(gulp.dest(prod.fonts));
-
-
-  // Grab images
-  gulp.src(src.img)
-    .pipe(plumber())
-    .pipe(gulp.dest(dist.img))
-    .pipe(gulp.dest(prod.img));
-
-  // Grab Vendor JS (not used in es6 modules)
-  gulp.src(src.vendorjs)
-    .pipe(plumber())
-    .pipe(gulp.dest(dist.vendorjs));
+// task ensures task is done before browser reload
+gulp.task('reload', (done) => {
+  browserSync.reload();
+  done();
 });
 
 // Task: Watch
-gulp.task('watch', ['watchify', 'browserSync', 'sass', 'html'], () => {
+gulp.task('watch', ['watchify', 'browserSync', 'sass'], () => {
   gulp.watch(src.sass, ['sass']);
   gulp.watch(src.html, ['html']);
-  gulp.watch(src.img, ['migrate']);
+  gulp.watch(src.php, ['reload']);
 });
-
-// Task: Clean
-// Delete all files in the dist folder
-gulp.task('clean', () => {
-  gulp.src(`${dist.top}/*`, { read: false })
-    .pipe(clean());
-});
-
 
 // Task: BrowserSync
 gulp.task('browserSync', () => {
@@ -222,26 +173,26 @@ gulp.task('browserSync', () => {
 // Task: Build
 gulp.task('build', (callback) => {
   runSequence('clean',
-              ['migrate', 'sass-prod', 'browserify-prod'],
+              ['sass-prod', 'browserify-prod'],
               callback);
 });
 
 // Task: prod
 // Creates a production-ready folder with theme
 gulp.task('prod', ['prod-clean', 'sass-prod'], () => {
-  gulp.src(src.php, { base: '.' })
+  gulp.src(src.files, { base: '.' })
     .pipe(plumber())
-    .pipe(gulp.dest(dist.prod))
     .pipe(gulp.dest(prod.top))
+    .pipe(gulp.dest(prod.prod))
     .on('error', gutil.log);
 });
 
 // Task: prod-clean
 // Deletes everything in the prod folder.
 gulp.task('prod-clean', () => {
-  gulp.src(`${dist.prod}/*`, { read: false })
+  gulp.src(`${prod.prod}/*`, { read: false })
     .pipe(clean());
 });
 
 // Task: Default (launch server and watch files for changes)
-gulp.task('default', ['migrate', 'watch'], () => {});
+gulp.task('default', ['watch'], () => {});
