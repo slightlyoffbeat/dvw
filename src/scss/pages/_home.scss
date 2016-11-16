@@ -187,8 +187,12 @@ $home-unit: (
     height: 100%;
     width: 100%;
     padding: 15px;
-    opacity: 0;
+    opacity: 1;
     transition: all .4s ease;
+
+    @include bp(small) {
+      opacity: 0;
+    }
   }
 
   .work__hover-inner {
@@ -198,9 +202,13 @@ $home-unit: (
     height: 100%;
     display: flex;
     align-items: center;
-    opacity: 0;
-    transform: translateX(-15px);
+    opacity: 1;
     transition: all .4s ease-in-out;
+
+    @include bp(small) {
+      opacity: 0;
+      transform: translateX(-15px);
+    }
   }
 
   .work__hover-content {

@@ -26,8 +26,9 @@ get_header(); ?>
       <div class="experience-info">
         <h1>Dan Brown</h1>
         <h3>Brand & marketing expert. Creator. Product guy. Swiss Army Knife.</h3>
-        <a href="#" target="_blank" class="button experience-info__button button--primary">LinkedIn</a>
-        <a href="#" target="_blank" class="button experience-info__button button-outline--secondary">Resume</a>
+        <a href="https://www.linkedin.com/in/slightlyoffbeat
+" target="_blank" class="button experience-info__button button--primary">LinkedIn</a>
+        <a href="<?php bloginfo('template_directory')?>/include/DanBrown-Resume.pdf" target="_blank" class="button experience-info__button button-outline--secondary">Resume</a>
       </div>
     </div>
 

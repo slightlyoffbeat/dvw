@@ -1,35 +1,37 @@
 <?php
 /**
- * The template for displaying all single posts.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package Dan_vs_Wild
+ * The template for displaying a single post
  */
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div class="content">
+  <main class="project">
 
-		<?php
-		while ( have_posts() ) : the_post();
+  <?php while ( have_posts() ) : the_post(); ?>
 
-			get_template_part( 'components/content', get_post_format() );
+    <div class="container">
+      <div class="project__hero-wrap">
 
-			the_post_navigation();
+        <?php if( get_field('featured_video_link') ): ?>
+            <?php echo wp_oembed_get( 'https://vimeo.com/191034951' ); ?>
+        <?php elseif( has_post_thumbnail() ): ?>
+            <?php the_post_thumbnail(); ?>
+        <?php endif; ?>
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+        <div class="project__info">
+            <h1 class="project__title"><?php the_title(); ?></h1>
+            <span class="project__role"><?php the_field('role') ?></span>
+            <?php the_field('project_description') ?>
+        </div>
+      </div>
+    </div>
 
-		endwhile; // End of the loop.
-		?>
+    <?php get_template_part( 'components/single/single', 'content' ); ?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+  <?php endwhile; ?>
 
-<?php
-get_sidebar();
-get_footer();
+  </main><!-- #main -->
+</div><!-- #primary -->
+
+<?php get_footer(); ?>
