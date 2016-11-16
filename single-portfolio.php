@@ -15,7 +15,7 @@ get_header(); ?>
 
         <?php if( get_field('featured_video_link') ): ?>
             <?php echo wp_oembed_get( 'https://vimeo.com/191034951' ); ?>
-        <?php else: ?>
+        <?php elseif( has_post_thumbnail() ): ?>
             <?php the_post_thumbnail(); ?>
         <?php endif; ?>
 
@@ -27,11 +27,7 @@ get_header(); ?>
       </div>
     </div>
 
-    <div class="single-content">
-      <div class="container">
-        <?php  the_content();  ?>
-      </div>
-    </div>
+    <?php get_template_part( 'components/single/single', 'content' ); ?>
 
   <?php endwhile; ?>
 

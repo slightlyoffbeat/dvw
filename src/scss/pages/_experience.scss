@@ -1,0 +1,24 @@
+// ----------------------------------------------------------------------------
+// Experience Page
+// ----------------------------------------------------------------------------
+
+.experience-info {
+  @include span(12);
+  color: $off-black;
+
+  @include bp(small) {
+    @include span(8);
+    @include push(2);
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+}
+
+.experience-info__button {
+  @include span(6);
+  margin-top: spacing(1);
+  margin-bottom: spacing(1);
+}

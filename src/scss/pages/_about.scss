@@ -1,0 +1,33 @@
+// ----------------------------------------------------------------------------
+// About Page
+// ----------------------------------------------------------------------------
+
+.about-page {
+  background-color: $off-white;
+
+  .header {
+    background-color: $off-black;
+  }
+
+}
+
+
+
+.about {
+  padding-top: spacing(1);
+}
+
+.about__image {
+  margin-bottom: spacing(1);
+
+  @include bp(small) {
+    @include span(8);
+    @include push(2);
+  }
+}
+
+.about-content {
+  p {
+    @include typesize(0);
+  }
+}

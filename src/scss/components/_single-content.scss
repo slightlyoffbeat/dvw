@@ -12,16 +12,37 @@
 
 .single-content {
   color: $off-black;
-}
 
-.single-content p {
-  @include span(8);
-  @include push(2);
-  color: $off-black;
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: $off-black;
+
+    @include bp(small) {
+      @include span(8);
+      @include push(2);
+    }
+  }
+
+  a {
+    color: $off-black;
+    @include text-underline($off-black, $off-white, $off-black);
+  }
+
+  p {
+    @include typesize(0);
+  }
 }
 
 .single-content .size-large {
-  margin: spacing(1) 0;
-  @include span(10);
-  @include push(1);
+  margin-top: spacing(1);
+  margin-bottom: spacing(1);
+
+  @include bp(small) {
+    @include span(10);
+    @include push(1);
+  }
 }

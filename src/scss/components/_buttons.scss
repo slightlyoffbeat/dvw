@@ -18,18 +18,20 @@ This uses a mixin that can be found at /util/mixins/_buttons.scss
   @include typesize(0);
   display: inline-block;
   font-weight: inherit;
-  border-radius: $base-radius;
+  border-radius: 0;
   line-height: inherit;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  padding: spacing(.5) spacing(1);
-  border: 2px solid transparent;
+  padding: spacing(.5) spacing(2);
+  border: 3px solid transparent;
   background: $primary;
   transition: all $base-time $base-ease;
   text-decoration: none;
+  font-family: $sans-serif;
+  font-weight: 700;
 
   &:active,
   &:hover,
@@ -52,10 +54,10 @@ This uses a mixin that can be found at /util/mixins/_buttons.scss
 
 $_button-primary-color: $white;
 $_button-primary-color-hover: $white;
-$_button-primary-bg:  $primary;
-$_button-primary-bg-hover: darken($primary, 10%);
-$_button-primary-border: $primary;
-$_button-primary-border-hover: darken($primary, 10%);
+$_button-primary-bg:  $off-black;
+$_button-primary-bg-hover: lighten($off-black, 10%);
+$_button-primary-border: $off-black;
+$_button-primary-border-hover: lighten($off-black, 10%);
 
 $_button-secondary-color: $white;
 $_button-secondary-color-hover: $white;

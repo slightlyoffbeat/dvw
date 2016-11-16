@@ -4,9 +4,6 @@
 
 .project {
   padding-top: spacing(1);
-   p {
-    @include typesize(0);
-   }
 }
 .project__hero-wrap {
   @include span(12);
@@ -17,12 +14,20 @@
 }
 
 .project__info {
-  @include span(10);
-  @include push(1);
   margin-top: spacing(1);
   margin-bottom: spacing(1);
   background-color: $off-black;
-  padding: spacing(2);
+  padding: spacing(1);
+
+  p {
+    @include typesize(0);
+  }
+
+  @include bp(small) {
+    @include span(10);
+    @include push(1);
+    padding: spacing(2);
+  }
 }
 
 .project__title {
