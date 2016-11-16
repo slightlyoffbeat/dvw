@@ -7,10 +7,15 @@
 
 <footer class="footer">
   <span class="footer__text">Made in sunny San Diego</span>
-  <a class="footer__icon" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-  <a class="footer__icon" href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
-  <a class="footer__icon" href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-  <a class="footer__icon" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-  <a class="footer__icon" href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
-  <a class="footer__icon" href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+
+  <?php if( have_rows('social_links', 'options') ): ?>
+
+  <?php while ( have_rows('social_Links', 'options') ) : the_row(); ?>
+
+  <a class="footer__icon" target="_blank" href="<?php the_sub_field('social_link')?>">
+    <i class="footer__icon fa fa-<?php the_sub_field('social_icon')?>" aria-hidden="true"></i>
+  </a>
+
+  <?php endwhile; endif; ?>
+
 </footer>

@@ -5,9 +5,9 @@
     <div class="intro">
       <div class="intro__wrap">
         <h1 class='intro__title'>Dan Brown</h1>
-        <p class="intro__text">I am a creator, <a href="#" target="blank">developer</a>, product guy, strategist, <a href="#" target="_blank">homebrewer</a>, runner,
-          sock enthusiast, beard evangelist, <a href="#">writer</a>, drummer, adventurer, Oxford comma advocate,
-          and <a href="#">human Swiss Army Knife</a>.</p>
+        <p class="intro__text">I am a creator, <a href="http://www.github.com/slightlyoffbeat" target="blank">developer</a>, product guy, strategist, homebrewer, <a href="https://www.strava.com/athletes/573766" target="_blank">runner</a>,
+          sock enthusiast, beard evangelist, writer, drummer, adventurer, Oxford comma advocate,
+          and <a target="_blank" href="https://www.linkedin.com/in/slightlyoffbeat">human Swiss Army Knife</a>.</p>
 
         <?php
 
@@ -152,7 +152,7 @@
   </div> <!--/container-->
 </div> <!--/work-->
 
-<div class="snippet home-slate">
+<!-- <div class="snippet home-slate">
   <div class="container">
     <h2 class="section-title">Words I've Written</h2>
     <div class="snippet__post">
@@ -172,8 +172,8 @@
       <span class="snippet__meta">Beer / May 1, 2016</span>
       <a class="button snippet__button">Read More</a>
     </div>
-  </div> <!--/container -->
-</div> <!--/snippet-->
+  </div>
+</div> -->
 
 
 <div class="insta home-slate">

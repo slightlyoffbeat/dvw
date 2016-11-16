@@ -10,4 +10,8 @@ const feed = new Instafeed({
   limit: '8',
 });
 
-feed.run();
+jQuery(document).ready($ => {
+  if ($('.insta').length) {
+    feed.run();
+  }
+});

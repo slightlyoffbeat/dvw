@@ -38,6 +38,7 @@
     "gulp-flatten": "^0.2.0",
     "instafeed.js": "^1.4.1",
     "jquery": "^2.1.4",
+    "lodash": "^4.17.2",
     "normalize.scss": "^0.1.0"
   }
 }
