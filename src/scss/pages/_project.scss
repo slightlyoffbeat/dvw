@@ -1,0 +1,47 @@
+// ----------------------------------------------------------------------------
+// Project / Portfolio Single page
+// ----------------------------------------------------------------------------
+
+.project {
+  padding-top: spacing(1);
+   p {
+    @include typesize(0);
+   }
+}
+.project__hero-wrap {
+  @include span(12);
+}
+
+.project__hero--image {
+  width: 100%;
+}
+
+.project__info {
+  @include span(10);
+  @include push(1);
+  margin-top: spacing(1);
+  margin-bottom: spacing(1);
+  background-color: $off-black;
+  padding: spacing(2);
+}
+
+.project__title {
+  margin-bottom: 0;
+}
+
+.project__role {
+  display: block;
+  color: $light-gray;
+  margin-bottom: spacing(1);
+  font-family: $sans-serif;
+  text-transform: uppercase;
+
+  &::after {
+    display: block;
+    content: '';
+    background: $primary;
+    margin-top: spacing(1);
+    height: 4px;
+    width: 90px;
+  }
+}

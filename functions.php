@@ -35,6 +35,28 @@ function dvw_setup() {
 	 */
 	add_theme_support( 'title-tag' );
 
+	add_image_size('max-width', 2000, 9999);
+
+	set_post_thumbnail_size( 2000, 9999 );
+
+
+	/*
+	 * Remove <p> tags from images
+	 */
+
+	function filter_ptags_on_images($content)
+{
+    // do a regular expression replace...
+    // find all p tags that have just
+    // <p>maybe some white space<img all stuff up to /> then maybe whitespace </p>
+    // replace it with just the image tag...
+    return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+}
+
+add_filter('the_content', 'filter_ptags_on_images');
+
+
+
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
@@ -79,7 +101,7 @@ add_action( 'after_setup_theme', 'dvw_setup' );
  * @global int $content_width
  */
 function dvw_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'dvw_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'dvw_content_width', 1200 );
 }
 add_action( 'after_setup_theme', 'dvw_content_width', 0 );
 

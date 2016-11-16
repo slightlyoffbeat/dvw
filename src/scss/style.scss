@@ -36,18 +36,21 @@
 // -------------------------
 @import 'components/buttons',
         'components/scroll-down',
-        'components/hamburger';
+        'components/hamburger',
+        'components/single-content';
 
 
 // layout
 // -------------------------
 @import 'layout/header',
-        'layout/footer';
+        'layout/footer',
+        'layout/content';
 
 
 // pages
 // -------------------------
-@import 'pages/home';
+@import 'pages/home',
+        'pages/project';
 
 
 // Shaaaammmeee

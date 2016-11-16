@@ -1,0 +1,27 @@
+// ----------------------------------------------------------------------------
+// Single Content
+// ----------------------------------------------------------------------------
+
+.single {
+  background-color: $off-white;
+}
+
+.single .header {
+  background-color: $off-black;
+}
+
+.single-content {
+  color: $off-black;
+}
+
+.single-content p {
+  @include span(8);
+  @include push(2);
+  color: $off-black;
+}
+
+.single-content .size-large {
+  margin: spacing(1) 0;
+  @include span(10);
+  @include push(1);
+}

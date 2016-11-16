@@ -7,7 +7,8 @@
 
 <header class="header">
 	<div class="logo">
-		<a href="./"><img src="<?php bloginfo('template_directory')?>/img/logo.svg" alt="Logo" /></a>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>
+"><img src="<?php bloginfo('template_directory')?>/img/logo.svg" alt="Logo" /></a>
 	</div>
 
 	<button class="hamburger" type="button">
