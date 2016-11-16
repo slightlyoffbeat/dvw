@@ -1,0 +1,80 @@
+// ----------------------------------------------------------------------------
+// Contact Page
+// ----------------------------------------------------------------------------
+
+.contact-page {
+  background-color: $off-white;
+
+  .header {
+    background-color: $off-black;
+  }
+}
+
+.contact {
+  @include span(12);
+
+  @include bp(small) {
+    @include span(8);
+    @include push(2);
+  }
+
+  @include bp(medium) {
+    @include span(6);
+    @include push(3);
+  }
+
+  h2,
+  p {
+    color: $off-black;
+  }
+
+  p {
+    @include typesize(0);
+  }
+
+  input[type=text],
+  input[type=email],
+  textarea {
+    @include typesize(0);
+    margin-top: 5px;
+    margin-bottom: 6px;
+    width: 100%;
+    padding: 10px;
+    background-color: $white;
+    border: 2px solid #e2e2e2;
+    color: $off-black;
+  }
+
+  input:focus,
+  textarea:focus {
+    color: $off-black;
+  }
+
+  label {
+    @include typesize(0);
+    color: $light-gray;
+    font-family: $sans-serif;
+  }
+
+  textarea {
+    height: 300px;
+  }
+
+}
+
+span.wpcf7-not-valid-tip {
+  color: #ff6e6e;
+  font-size: 16px;
+  display: block;
+  font-family: $sans-serif;
+}
+
+.wpcf7-validation-errors,
+.wpcf7-mail-sent-ok,
+.wpcf7-spam-blocked {
+  border: 2px solid $off-black;
+  font-size: 16px;
+  color: $off-black;
+  text-align: center;
+  font-family: $sans-serif;
+}

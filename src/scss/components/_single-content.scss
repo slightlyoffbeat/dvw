@@ -21,7 +21,7 @@
   h5 {
     color: $off-black;
 
-    @include bp(small) {
+    @include bp(medium) {
       @include span(8);
       @include push(2);
     }
@@ -41,8 +41,9 @@
   margin-top: spacing(1);
   margin-bottom: spacing(1);
 
-  @include bp(small) {
+  @include bp(medium) {
     @include span(10);
     @include push(1);
   }
+
 }

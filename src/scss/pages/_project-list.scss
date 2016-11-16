@@ -1,0 +1,41 @@
+// ----------------------------------------------------------------------------
+// Project List
+// ----------------------------------------------------------------------------
+
+.portfolio-page {
+  background-color: $off-white;
+  color: $off-black;
+
+  .header {
+    background-color: $off-black;
+  }
+}
+
+.featured-project {
+  margin-top: spacing(1);
+  margin-bottom: spacing(2);
+
+  img {
+    margin-bottom: 10px;
+  }
+}
+
+.project-tile {
+  margin-bottom: 40px;
+
+  @include bp(max-width small) {
+    @include break;
+  }
+
+
+  @include bp(small) {
+    @include span(4);
+  }
+
+}
+
+.project-tile__image {
+  height: 300px;
+  background-size: cover;
+  margin-bottom: 10px;
+}

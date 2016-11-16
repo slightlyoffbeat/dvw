@@ -35,7 +35,9 @@ function dvw_setup() {
 	 */
 	add_theme_support( 'title-tag' );
 
-	add_image_size('max-width', 2000, 9999);
+	//add_image_size('max-width', 2000, 9999);
+
+	add_image_size( 'tile', 390, 390, false );
 
 	set_post_thumbnail_size( 2000, 9999 );
 
