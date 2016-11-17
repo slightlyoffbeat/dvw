@@ -14,7 +14,7 @@ get_header(); ?>
       <div class="project__hero-wrap">
 
         <?php if( get_field('featured_video_link') ): ?>
-            <?php echo wp_oembed_get( 'https://vimeo.com/191034951' ); ?>
+            <?php echo wp_oembed_get( get_field('featured_video_link') ); ?>
         <?php elseif( has_post_thumbnail() ): ?>
             <?php the_post_thumbnail(); ?>
         <?php endif; ?>

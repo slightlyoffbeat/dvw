@@ -181,6 +181,7 @@ $_list-line-height: inherit !default;
 ul,
 ol,
 dl {
+  font-weight: 300;
   margin-bottom: spacing(.5);
   list-style-position: inside;
   line-height: $_list-line-height;
@@ -190,6 +191,10 @@ ul,
 ol {
   list-style-type: disc;
   margin-left: $_list-side-margin;
+}
+
+li {
+  margin-bottom: 8px;
 }
 
 

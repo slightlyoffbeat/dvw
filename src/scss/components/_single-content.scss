@@ -38,6 +38,10 @@
   p {
     @include typesize(0);
   }
+
+  p + img {
+    margin-top: 15px !important;
+  }
 }
 
 .single-content .size-large {
@@ -49,4 +53,8 @@
     @include push(1);
   }
 
+}
+
+.size-large + .size-large {
+  margin-top: -10px;
 }
