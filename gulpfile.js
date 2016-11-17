@@ -41,7 +41,7 @@ const src = {
   vendorjs : 'src/js/vegndor/*.js',
   php      : './**/*.php',
   files      : ['./*.{txt,ico,png,php}', 'css/**/*', 'components/**/*',
-              'includes/**/*', 'js/**/*', 'style.css'],
+              'include/**/*', 'img/**/*', 'fonts/**/*', 'js/**/*', 'style.css'],
 };
 
 const prod = {
@@ -91,7 +91,6 @@ function bundleJs(bundler) {
   return bundler.bundle()
     .pipe(source(src.mainjs))
     .pipe(buffer())
-    .pipe(gulp.dest(prod.mainjs))
     .pipe(rename('bundle.js'))
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(uglify())
@@ -179,7 +178,7 @@ gulp.task('build', (callback) => {
 
 // Task: prod
 // Creates a production-ready folder with theme
-gulp.task('prod', ['prod-clean', 'sass-prod'], () => {
+gulp.task('prod', ['prod-clean'], () => {
   gulp.src(src.files, { base: '.' })
     .pipe(plumber())
     .pipe(gulp.dest(prod.top))
