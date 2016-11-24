@@ -20,7 +20,6 @@ const babelify     = require('babelify');
 const watchify     = require('watchify');
 const uglify       = require('gulp-uglify');
 const buffer       = require('vinyl-buffer');
-const flatten      = require('gulp-flatten');
 const runSequence  = require('run-sequence');
 
 
@@ -48,6 +47,7 @@ const prod = {
   prod     : 'prod',
   css      : 'css',
   top      : '../../../../prod',
+  theme2   : '../../dvw2',
   js       : 'js',
   mainjs   : 'js',
   img      : 'img',
@@ -78,7 +78,7 @@ gulp.task('sass', () => {
 // Task: Sass Prod
 // Production ready sass
 gulp.task('sass-prod', () => {
-  gulp.src(src.sass)
+  gulp.src(src.sassroot)
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleancss())
@@ -169,21 +169,32 @@ gulp.task('browserSync', () => {
   });
 });
 
-// Task: Build
-gulp.task('build', (callback) => {
-  runSequence('clean',
-              ['sass-prod', 'browserify-prod'],
-              callback);
+// Task: Clean
+// Deletes CSS & JS folder contents
+gulp.task('clean', () => {
+  gulp.src([`${prod.js}/*`, `${prod.css}/*`], { read: false })
+    .pipe(clean());
 });
 
-// Task: prod
-// Creates a production-ready folder with theme
-gulp.task('prod', ['prod-clean'], () => {
+// Task: Build
+gulp.task('build', ['clean'], (callback) => {
+  runSequence(['sass-prod', 'browserify-prod'], callback);
+});
+
+// Task: prod-transfer
+// Transfers php files, txt files etc for production ready build
+gulp.task('prod-transfer', () => {
   gulp.src(src.files, { base: '.' })
     .pipe(plumber())
     .pipe(gulp.dest(prod.top))
     .pipe(gulp.dest(prod.prod))
     .on('error', gutil.log);
+});
+
+// Task: prod
+// Creates a production-ready folder with theme
+gulp.task('prod', (callback) => {
+  runSequence('prod-clean', 'prod-transfer', callback);
 });
 
 // Task: prod-clean
